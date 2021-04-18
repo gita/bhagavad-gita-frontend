@@ -1,0 +1,14 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for documentaiton about the extensions.json format
+  "recommendations": [
+    // Apollo GraphQL
+    "apollographql.vscode-apollo",
+    // Prettier
+    "esbenp.prettier-vscode",
+    // Styled Components syntax highlighting
+    "jpoissonnier.vscode-styled-components",
+    // Chrome Debugging
+    "msjsdiag.debugger-for-chrome"
+  ]
+}
