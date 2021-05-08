@@ -1,43 +1,52 @@
 import * as React from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
+import { graphql, useFragment } from 'react-relay/hooks';
 import Link from 'next/link';
 import { ChapterByIdQuery } from '@/__generated__/ChapterByIdQuery.graphql';
+import { Slug_GitaChapterQueryResponse } from '@/__generated__/Slug_GitaChapterQuery.graphql';
+import {
+  ChapterById_ChapterDataFragment,
+  ChapterById_ChapterDataFragment$key,
+} from '@/__generated__/ChapterById_ChapterDataFragment.graphql';
+import { GitaChapter } from '@/types/api';
 
-export interface ChapterByIdProps {
-  id: string;
-}
+type ChapterByIdProps = {
+  query: Slug_GitaChapterQueryResponse;
+};
 
-export function ChapterById({ id }: ChapterByIdProps) {
-  const data = useLazyLoadQuery<ChapterByIdQuery>(
+export function ChapterById({ query }: ChapterByIdProps) {
+  const data = useFragment<ChapterById_ChapterDataFragment$key>(
     graphql`
-      query ChapterByIdQuery($id: ID!) {
-        GitaChapter(id: $id) {
-          name
-          chapter_summary
-          slug {
-            current
-          }
-          name_translation
-          name_transliterated
-          name_meaning
-          chapter_number
-          title
-          _id
-        }
+      fragment ChapterById_ChapterDataFragment on GitaChapter {
+        name
+        chapter_number
+        chapter_summary
+        name_meaning
+        name_translation
+        name_transliterated
       }
     `,
-    { id }
+    query.GitaChapter
   );
-  const { GitaChapter } = data;
+  if (!data) {
+    return null;
+  }
+  const {
+    name,
+    chapter_number,
+    chapter_summary,
+    name_meaning,
+    name_translation,
+    name_transliterated,
+  } = data;
   return (
     <div>
       <h1>
-        {GitaChapter?.chapter_number}. {GitaChapter?.name}
+        {chapter_number}. {name}
       </h1>
-      <p>{GitaChapter?.chapter_summary}</p>
-      <p>{GitaChapter?.name_meaning}</p>
-      <p>{GitaChapter?.name_translation}</p>
-      <p>{GitaChapter?.name_transliterated}</p>
+      <p>{chapter_summary}</p>
+      <p>{name_meaning}</p>
+      <p>{name_translation}</p>
+      <p>{name_transliterated}</p>
     </div>
   );
 }

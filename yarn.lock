@@ -3981,7 +3981,7 @@ raf@^3.4.1:
   dependencies:
     performance-now "^2.1.0"
 
-randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
+randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
   integrity sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
@@ -4166,6 +4166,13 @@ relay-compiler@^11.0.2:
     relay-runtime "11.0.2"
     signedsource "^1.0.0"
     yargs "^15.3.1"
+
+relay-nextjs@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/relay-nextjs/-/relay-nextjs-0.1.2.tgz#1b6a0914c5c6f61f56ee6c9e5709fb1b02593a41"
+  integrity sha512-Yka1/YjerbyoRtDYIpe4n2FcR63RiWWYY4ut9JAqy/aE4liZ4A/STXmhqa/mcenunLHtNhIjITEltphT/duPMA==
+  dependencies:
+    serialize-javascript "^5.0.1"
 
 relay-runtime@10.1.0:
   version "10.1.0"
@@ -4362,6 +4369,13 @@ sentence-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
+
+serialize-javascript@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-5.0.1.tgz#7886ec848049a462467a97d3d918ebb2aaf934f4"
+  integrity sha512-SaaNal9imEO737H2c05Og0/8LUXG7EnsZyMa8MzkmuHoELfT6txuj0cMqRj6zfPKnmQ1yasR4PCJc8x+M4JSPA==
+  dependencies:
+    randombytes "^2.1.0"
 
 set-blocking@^2.0.0:
   version "2.0.0"

@@ -3,8 +3,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ChaptersListQueryVariables = {};
-export type ChaptersListQueryResponse = {
+export type pages_indexListChaptersQueryVariables = {};
+export type pages_indexListChaptersQueryResponse = {
     readonly allGitaChapter: ReadonlyArray<{
         readonly name: string | null;
         readonly chapter_summary: string | null;
@@ -16,15 +16,15 @@ export type ChaptersListQueryResponse = {
         readonly _id: string | null;
     }>;
 };
-export type ChaptersListQuery = {
-    readonly response: ChaptersListQueryResponse;
-    readonly variables: ChaptersListQueryVariables;
+export type pages_indexListChaptersQuery = {
+    readonly response: pages_indexListChaptersQueryResponse;
+    readonly variables: pages_indexListChaptersQueryVariables;
 };
 
 
 
 /*
-query ChaptersListQuery {
+query pages_indexListChaptersQuery {
   allGitaChapter(sort: {chapter_number: ASC}) {
     name
     chapter_summary
@@ -118,7 +118,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChaptersListQuery",
+    "name": "pages_indexListChaptersQuery",
     "selections": (v0/*: any*/),
     "type": "RootQuery",
     "abstractKey": null
@@ -127,18 +127,18 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "ChaptersListQuery",
+    "name": "pages_indexListChaptersQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "4f47001230149e9da76b3c4fec897de1",
+    "cacheID": "5ff527e26858f0d1201d5a7236698d20",
     "id": null,
     "metadata": {},
-    "name": "ChaptersListQuery",
+    "name": "pages_indexListChaptersQuery",
     "operationKind": "query",
-    "text": "query ChaptersListQuery {\n  allGitaChapter(sort: {chapter_number: ASC}) {\n    name\n    chapter_summary\n    slug {\n      current\n    }\n    chapter_number\n    title\n    _id\n  }\n}\n"
+    "text": "query pages_indexListChaptersQuery {\n  allGitaChapter(sort: {chapter_number: ASC}) {\n    name\n    chapter_summary\n    slug {\n      current\n    }\n    chapter_number\n    title\n    _id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'd36d9608e48c35b83874658523dce81b';
+(node as any).hash = '7b12be37b57c1e5edcafda13c66d335d';
 export default node;
