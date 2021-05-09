@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://bhagavadgita.io">
-    <img src="gita.png" alt="Logo" width="300">
+    <img src="https://raw.githubusercontent.com/gita/bhagavadgita-api/master/gita.png" alt="Logo" width="300">
   </a>
 
   <h3 align="center">BhagavadGita.io Frontend</h3>
@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="https://github.com/gita/bhagavadgita-frontend/blob/master/LICENSE">
-    <img alt="LICENSE" src="https://img.shields.io/badge/License-GPLv3-blue.svg?maxAge=43200">
+    <img alt="LICENSE" src="https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=43200">
   </a>
   <a href="https://starcharts.herokuapp.com/gita/bhagavadgita-frontend"><img alt="Stars" src="https://img.shields.io/github/stars/gita/bhagavadgita-frontend.svg?style=social"></a>
 </p>
