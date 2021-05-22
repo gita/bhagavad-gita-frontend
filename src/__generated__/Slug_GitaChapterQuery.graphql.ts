@@ -32,11 +32,25 @@ query Slug_GitaChapterQuery(
 
 fragment ChapterById_ChapterDataFragment on GitaChapter {
   name
+  title
   chapter_number
   chapter_summary
   name_meaning
   name_translation
   name_transliterated
+  verses {
+    _id
+    title
+    text
+    slug {
+      current
+    }
+    transliteration
+    verse_number
+    verse_order
+    meaning
+    word_meanings
+  }
 }
 */
 
@@ -60,6 +74,13 @@ v2 = {
   "args": null,
   "kind": "ScalarField",
   "name": "_id",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
   "storageKey": null
 };
 return {
@@ -112,6 +133,7 @@ return {
             "name": "name",
             "storageKey": null
           },
+          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -146,6 +168,79 @@ return {
             "kind": "ScalarField",
             "name": "name_transliterated",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "GitaVerse",
+            "kind": "LinkedField",
+            "name": "verses",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "text",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Slug",
+                "kind": "LinkedField",
+                "name": "slug",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "current",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "transliteration",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "verse_number",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "verse_order",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "meaning",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "word_meanings",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -153,12 +248,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5b75099e3d70739f5c5cb1b6936d5274",
+    "cacheID": "2672b822b6f14851c50b8aa5fcc34337",
     "id": null,
     "metadata": {},
     "name": "Slug_GitaChapterQuery",
     "operationKind": "query",
-    "text": "query Slug_GitaChapterQuery(\n  $id: ID!\n) {\n  GitaChapter(id: $id) {\n    _id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapter {\n  name\n  chapter_number\n  chapter_summary\n  name_meaning\n  name_translation\n  name_transliterated\n}\n"
+    "text": "query Slug_GitaChapterQuery(\n  $id: ID!\n) {\n  GitaChapter(id: $id) {\n    _id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapter {\n  name\n  title\n  chapter_number\n  chapter_summary\n  name_meaning\n  name_translation\n  name_transliterated\n  verses {\n    _id\n    title\n    text\n    slug {\n      current\n    }\n    transliteration\n    verse_number\n    verse_order\n    meaning\n    word_meanings\n  }\n}\n"
   }
 };
 })();
