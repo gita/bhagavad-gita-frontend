@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { graphql, useFragment } from 'react-relay/hooks';
 import Link from 'next/link';
-import { ChapterByIdQuery } from '@/__generated__/ChapterByIdQuery.graphql';
 import { Slug_GitaChapterQueryResponse } from '@/__generated__/Slug_GitaChapterQuery.graphql';
 import {
   ChapterById_ChapterDataFragment,
@@ -41,7 +40,7 @@ export function ChapterById({ query }: ChapterByIdProps) {
     `,
     query.GitaChapter
   );
-  if (!data) {
+  if (!data || !data.verses) {
     return null;
   }
   const {
@@ -65,6 +64,9 @@ export function ChapterById({ query }: ChapterByIdProps) {
       <p>{name_transliterated}</p>
       <div className="flex flex-wrap -m-2">
         {verses.map((verse) => {
+          if (!verse) {
+            return null;
+          }
           return (
             <div key={verse._id} className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
