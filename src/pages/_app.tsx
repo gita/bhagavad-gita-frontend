@@ -2,6 +2,7 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { getInitialPreloadedQuery, getRelayProps } from 'relay-nextjs/app';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import type { AppProps } from 'next/app';
+import '../styles/index.css';
 
 const clientEnv = getRelayClientEnvironment();
 const initialPreloadedQuery = getInitialPreloadedQuery({

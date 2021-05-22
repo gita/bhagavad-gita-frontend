@@ -6,6 +6,7 @@ import { graphql, useFragment, usePreloadedQuery } from 'react-relay/hooks';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import { RelayProps, withRelay } from 'relay-nextjs';
 import { Slug_GitaChapterQuery } from '@/__generated__/Slug_GitaChapterQuery.graphql';
+import { Layout } from '@/components/Layout';
 
 export interface IChapterPageProps {}
 
@@ -34,11 +35,11 @@ function HandleData({ preloadedQuery }: RelayProps<{}, Slug_GitaChapterQuery>) {
 
 function ChapterPage(props: RelayProps<{}, Slug_GitaChapterQuery>) {
   return (
-    <div>
+    <Layout>
       <Suspenseful>
         <HandleData {...props} />
       </Suspenseful>
-    </div>
+    </Layout>
   );
 }
 
