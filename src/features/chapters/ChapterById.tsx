@@ -67,6 +67,7 @@ export function ChapterById({ query }: ChapterByIdProps) {
           if (!verse) {
             return null;
           }
+          console.log(verse);
           return (
             <div key={verse._id} className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
@@ -75,6 +76,13 @@ export function ChapterById({ query }: ChapterByIdProps) {
                     {verse.title}
                   </h2>
                   <p className="text-gray-500">{verse.text}</p>
+                  <p>
+                    <Link href={`/verse/${verse._id}/fakeslug`}>
+                      <a className="text-indigo-500 inline-flex items-center mt-4">
+                        View Verse
+                      </a>
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>
