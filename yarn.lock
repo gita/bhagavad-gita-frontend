@@ -3921,10 +3921,10 @@ next-compose-plugins@^2.2.1:
   resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz#020fc53f275a7e719d62521bef4300fbb6fde5ab"
   integrity sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==
 
-next-transpile-modules@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-7.0.0.tgz#5a48988cede89bc5920defb15378093d0d8562eb"
-  integrity sha512-HgVczU5ajXKvE7HO3ZLmBmxXj79aq8jSZNYpCttim+MZ+b0GIsdk7AV2w7Ax/tIM1/dJA+vV/6loXCRYlbsGGA==
+next-transpile-modules@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-7.3.0.tgz#088bfc2baeff7624991d4b510558c7a9d4a82d73"
+  integrity sha512-1iIiXEL/tyqd9LS3ge8nhPLgYByaFxLSBqbaQZZBedTgFVVnULrcdGDBVqWzivkcxDIqBpdeou+FKqo87IUyVw==
   dependencies:
     enhanced-resolve "^5.7.0"
     escalade "^3.1.1"
