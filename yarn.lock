@@ -2606,10 +2606,10 @@ fbjs-css-vars@^1.0.0:
   resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
   integrity sha512-b2XGFAFdWZWg0phtAWLHCk836A1Xann+I+Dgd3Gk64MHKZO44FfoD1KxyvbSh0qZsIoXQGGlVztIY+oitJPpRQ==
 
-fbjs@^0.3.1:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.3.2.tgz#033a540595084b5de3509a405d06f1a2a8e5b9fb"
-  integrity sha1-AzpUBZUIS13jUJpAXQbxoqjlufs=
+fbjs@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.6.1.tgz#9636b7705f5ba9684d44b72f78321254afc860f7"
+  integrity sha1-lja3cF9bqWhNRLcveDISVK/IYPc=
   dependencies:
     core-js "^1.0.0"
     loose-envify "^1.0.0"
@@ -4621,14 +4621,10 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^0.0.0-experimental-5027eb465:
-  version "0.0.0-experimental-5027eb465"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-5027eb465.tgz#d16346a09acd4642a69ad4e599a82ebc5ab88198"
-  integrity sha512-0/U3oEMq8+KUpMdnZk0XsisdtvrMA6YEKgvHL4lZBgqrPG/UZ0/658HAviqZB7LWQ2Mm3WIzgLbs3El+pel4dw==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "0.0.0-experimental-5027eb465"
+react-dom@^0.14.10:
+  version "0.14.10"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.10.tgz#da883daef7fa86838e9e2fcfcc084c590c350e21"
+  integrity sha512-kDs8SWFb8Sry4NAplhpJbZEeAnTPir/m+s9s+lkdqA2a89BzmWGnEgGG/CfmhULjv1ogc4oHrjMfAvFNruT3jQ==
 
 react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
@@ -4658,13 +4654,13 @@ react-relay@^0.0.0-experimental-4c4107dd:
     relay-runtime "10.1.3"
     scheduler "^0.19.1"
 
-react@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.14.0.tgz#72e7c69233b082e37e1bbd3674a943db72d8f407"
-  integrity sha1-cufGkjOwguN+G702dKlD23LY9Ac=
+react@^0.14.10:
+  version "0.14.10"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.14.10.tgz#c10d7750f1c5b34eee2a123915ac4c14c01c1081"
+  integrity sha512-yxMw5aorZG4qsLVBfjae4wGFvd5708DhcxaXLJ3IOTgr1TCs8k9+ZheGgLGr5OfwWMhSahNbGvvoEDzrxVWouA==
   dependencies:
     envify "^3.0.0"
-    fbjs "^0.3.1"
+    fbjs "^0.6.1"
 
 readable-stream@^2.0.2, readable-stream@^2.3.3, readable-stream@^2.3.6:
   version "2.3.7"
@@ -4952,14 +4948,6 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-
-scheduler@0.0.0-experimental-5027eb465:
-  version "0.0.0-experimental-5027eb465"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-5027eb465.tgz#61046feedb8a5bd17458da24bcfd1c7679b73faf"
-  integrity sha512-4bHbnorhOexhqiHqEu8J4om7kNstJSXEccA3NNH/QQ532uGR3r4aCKadhYn8hhSPEwKwFpAGHHW0DWRZJ6DaoQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.19.1:
   version "0.19.1"
