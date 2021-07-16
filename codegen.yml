@@ -1,5 +1,5 @@
 schema:
-  - https://08ar7hpl.apicdn.sanity.io/v1/graphql/production/default
+  - https://bhagavadgita.graphcdn.app
 generates:
   'schema.graphql':
     plugins:

@@ -4,29 +4,33 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type pages_indexListChaptersQueryVariables = {};
-export type pages_indexListChaptersQueryResponse = {
+export type ChapterNumber_GitaChapterQueryVariables = {
+    chapterNumber?: number | null;
+};
+export type ChapterNumber_GitaChapterQueryResponse = {
     readonly chapters: ReadonlyArray<{
         readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"ChapterListItemFragment">;
+        readonly " $fragmentRefs": FragmentRefs<"ChapterById_ChapterDataFragment">;
     } | null> | null;
 };
-export type pages_indexListChaptersQuery = {
-    readonly response: pages_indexListChaptersQueryResponse;
-    readonly variables: pages_indexListChaptersQueryVariables;
+export type ChapterNumber_GitaChapterQuery = {
+    readonly response: ChapterNumber_GitaChapterQueryResponse;
+    readonly variables: ChapterNumber_GitaChapterQueryVariables;
 };
 
 
 
 /*
-query pages_indexListChaptersQuery {
-  chapters {
+query ChapterNumber_GitaChapterQuery(
+  $chapterNumber: Int
+) {
+  chapters(chapterNumber: $chapterNumber) {
     id
-    ...ChapterListItemFragment
+    ...ChapterById_ChapterDataFragment
   }
 }
 
-fragment ChapterListItemFragment on GitaChapterModel {
+fragment ChapterById_ChapterDataFragment on GitaChapterModel {
   name
   chapterSummary
   chapterNumber
@@ -34,12 +38,30 @@ fragment ChapterListItemFragment on GitaChapterModel {
   nameTranslated
   versesCount
   nameMeaning
-  id
+  verses {
+    id
+    text
+    verseNumber
+  }
 }
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "chapterNumber"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "chapterNumber",
+    "variableName": "chapterNumber"
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -48,24 +70,24 @@ var v0 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "pages_indexListChaptersQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "GitaChapterModel",
         "kind": "LinkedField",
         "name": "chapters",
         "plural": true,
         "selections": [
-          (v0/*: any*/),
+          (v2/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ChapterListItemFragment"
+            "name": "ChapterById_ChapterDataFragment"
           }
         ],
         "storageKey": null
@@ -76,19 +98,19 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "pages_indexListChaptersQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "GitaChapterModel",
         "kind": "LinkedField",
         "name": "chapters",
         "plural": true,
         "selections": [
-          (v0/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -137,6 +159,32 @@ return {
             "kind": "ScalarField",
             "name": "nameMeaning",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "GitaVerseModel",
+            "kind": "LinkedField",
+            "name": "verses",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "text",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "verseNumber",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -144,14 +192,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4ae90fded9b0ba08f417c470d067806a",
+    "cacheID": "34135e953c3be12d04a8910d65c4c0db",
     "id": null,
     "metadata": {},
-    "name": "pages_indexListChaptersQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "operationKind": "query",
-    "text": "query pages_indexListChaptersQuery {\n  chapters {\n    id\n    ...ChapterListItemFragment\n  }\n}\n\nfragment ChapterListItemFragment on GitaChapterModel {\n  name\n  chapterSummary\n  chapterNumber\n  nameTransliterated\n  nameTranslated\n  versesCount\n  nameMeaning\n  id\n}\n"
+    "text": "query ChapterNumber_GitaChapterQuery(\n  $chapterNumber: Int\n) {\n  chapters(chapterNumber: $chapterNumber) {\n    id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapterModel {\n  name\n  chapterSummary\n  chapterNumber\n  nameTransliterated\n  nameTranslated\n  versesCount\n  nameMeaning\n  verses {\n    id\n    text\n    verseNumber\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '687e794763a83ce07606af0243e953c0';
+(node as any).hash = 'c58df488415e0c622ee2fc0d72d2a2f1';
 export default node;

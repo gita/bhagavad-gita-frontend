@@ -1,22 +1,16 @@
-import { ChaptersList } from '@/features/chapters/ChaptersList';
 import { Suspenseful } from '@/components/Suspenseful';
 import { RelayProps, withRelay } from 'relay-nextjs';
-import { graphql, useFragment, usePreloadedQuery } from 'react-relay/hooks';
+import { graphql, usePreloadedQuery } from 'react-relay/hooks';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import { pages_indexListChaptersQuery } from '@/__generated__/pages_indexListChaptersQuery.graphql';
 import { Layout } from '@/components/Layout';
+import { ChapterListItem } from '@/components/ChapterListItem/ChapterListItem';
 
 const ChaptersListQuery = graphql`
   query pages_indexListChaptersQuery {
-    allGitaChapter(sort: { chapter_number: ASC }) {
-      name
-      chapter_summary
-      slug {
-        current
-      }
-      chapter_number
-      title
-      _id
+    chapters {          
+      id
+      ...ChapterListItemFragment
     }
   }
 `;
@@ -24,11 +18,27 @@ const ChaptersListQuery = graphql`
 function HandleData({
   preloadedQuery,
 }: RelayProps<{}, pages_indexListChaptersQuery>) {
-  const { allGitaChapter } = usePreloadedQuery(
+  const data = usePreloadedQuery(
     ChaptersListQuery,
     preloadedQuery
   );
-  return <ChaptersList allGitaChapter={allGitaChapter} />;
+  if(!data.chapters){
+    return null;
+  }
+  console.log(data);
+  return <div>
+  <h1>Chapters List</h1>
+  <div className="flex flex-wrap -m-4">
+    {data.chapters.map((chapter, index) => {
+      if(chapter){
+        return <ChapterListItem chapterRef={chapter} key={index}/> ;
+      }else{
+        return null;
+      }
+      
+    })}
+  </div>
+</div>;
 }
 
 function HomePage(props: RelayProps<{}, pages_indexListChaptersQuery>) {

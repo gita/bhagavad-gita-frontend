@@ -21,7 +21,7 @@
     "react-no-ssr": "^1.1.0",
     "react-relay": "^0.0.0-experimental-4c4107dd",
     "relay-compiler-language-typescript": "^14.0.0",
-    "relay-nextjs": "^0.1.2",
+    "relay-nextjs": "^0.3.0",
     "relay-runtime": "^11.0.2",
     "rooks": "^5.0.2-alpha.1",
     "styled-components": "^5.3.0",

@@ -5,35 +5,31 @@ import { ChapterById } from '@/features/chapters/ChapterById';
 import { graphql, useFragment, usePreloadedQuery } from 'react-relay/hooks';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import { RelayProps, withRelay } from 'relay-nextjs';
-import { Slug_GitaChapterQuery } from '@/__generated__/Slug_GitaChapterQuery.graphql';
+import { ChapterNumber_GitaChapterQuery } from '@/__generated__/ChapterNumber_GitaChapterQuery.graphql';
 import { Layout } from '@/components/Layout';
 
 export interface IChapterPageProps {}
 
 const ChapterQuery = graphql`
-  query Slug_GitaChapterQuery($id: ID!) {
-    GitaChapter(id: $id) {
-      _id
+  query ChapterNumber_GitaChapterQuery($chapterNumber: Int) {
+    chapters(chapterNumber: $chapterNumber) {
+      id
       ...ChapterById_ChapterDataFragment
     }
   }
 `;
 
-function HandleData({ preloadedQuery }: RelayProps<{}, Slug_GitaChapterQuery>) {
-  const query = usePreloadedQuery<Slug_GitaChapterQuery>(
-    ChapterQuery,
-    preloadedQuery
-  );
-  const router = useRouter();
-  const { id, slug } = router.query;
-  const stringId = Array.isArray(id) ? id[0] : id;
-  if (stringId) {
-    return <ChapterById query={query} />;
+function HandleData({
+  preloadedQuery,
+}: RelayProps<{}, ChapterNumber_GitaChapterQuery>) {
+  const { chapters } = usePreloadedQuery(ChapterQuery, preloadedQuery);
+  if (chapters && chapters[0]) {
+    return <ChapterById chapterById={chapters[0]} />;
   }
   return null;
 }
 
-function ChapterPage(props: RelayProps<{}, Slug_GitaChapterQuery>) {
+function ChapterPage(props: RelayProps<{}, ChapterNumber_GitaChapterQuery>) {
   return (
     <Layout>
       <Suspenseful>
@@ -51,5 +47,12 @@ export default withRelay(ChapterPage, ChapterQuery, {
     );
 
     return getRelayServerEnvironment();
+  },
+  variablesFromContext: (context) => {
+    const { chpaterNumber } = context.query;
+
+    return {
+      chpaterNumber: typeof chpaterNumber === 'string' ? parseInt(chpaterNumber) : chpaterNumber,
+    };
   },
 });
