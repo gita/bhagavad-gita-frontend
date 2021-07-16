@@ -3,18 +3,13 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type pages_indexListChaptersQueryVariables = {};
 export type pages_indexListChaptersQueryResponse = {
-    readonly allGitaChapter: ReadonlyArray<{
-        readonly name: string | null;
-        readonly chapter_summary: string | null;
-        readonly slug: {
-            readonly current: string | null;
-        } | null;
-        readonly chapter_number: number | null;
-        readonly title: string | null;
-        readonly _id: string | null;
-    }>;
+    readonly chapters: ReadonlyArray<{
+        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"ChapterListItemFragment">;
+    } | null> | null;
 };
 export type pages_indexListChaptersQuery = {
     readonly response: pages_indexListChaptersQueryResponse;
@@ -25,102 +20,58 @@ export type pages_indexListChaptersQuery = {
 
 /*
 query pages_indexListChaptersQuery {
-  allGitaChapter(sort: {chapter_number: ASC}) {
-    name
-    chapter_summary
-    slug {
-      current
-    }
-    chapter_number
-    title
-    _id
+  chapters {
+    id
+    ...ChapterListItemFragment
   }
+}
+
+fragment ChapterListItemFragment on GitaChapterModel {
+  name
+  chapterSummary
+  chapterNumber
+  nameTransliterated
+  nameTranslated
+  versesCount
+  nameMeaning
+  id
 }
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Literal",
-        "name": "sort",
-        "value": {
-          "chapter_number": "ASC"
-        }
-      }
-    ],
-    "concreteType": "GitaChapter",
-    "kind": "LinkedField",
-    "name": "allGitaChapter",
-    "plural": true,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "name",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "chapter_summary",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "Slug",
-        "kind": "LinkedField",
-        "name": "slug",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "current",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "chapter_number",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "title",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "_id",
-        "storageKey": null
-      }
-    ],
-    "storageKey": "allGitaChapter(sort:{\"chapter_number\":\"ASC\"})"
-  }
-];
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "pages_indexListChaptersQuery",
-    "selections": (v0/*: any*/),
-    "type": "RootQuery",
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "GitaChapterModel",
+        "kind": "LinkedField",
+        "name": "chapters",
+        "plural": true,
+        "selections": [
+          (v0/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ChapterListItemFragment"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
@@ -128,17 +79,79 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "pages_indexListChaptersQuery",
-    "selections": (v0/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "GitaChapterModel",
+        "kind": "LinkedField",
+        "name": "chapters",
+        "plural": true,
+        "selections": [
+          (v0/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "chapterSummary",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "chapterNumber",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "nameTransliterated",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "nameTranslated",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "versesCount",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "nameMeaning",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "5ff527e26858f0d1201d5a7236698d20",
+    "cacheID": "4ae90fded9b0ba08f417c470d067806a",
     "id": null,
     "metadata": {},
     "name": "pages_indexListChaptersQuery",
     "operationKind": "query",
-    "text": "query pages_indexListChaptersQuery {\n  allGitaChapter(sort: {chapter_number: ASC}) {\n    name\n    chapter_summary\n    slug {\n      current\n    }\n    chapter_number\n    title\n    _id\n  }\n}\n"
+    "text": "query pages_indexListChaptersQuery {\n  chapters {\n    id\n    ...ChapterListItemFragment\n  }\n}\n\nfragment ChapterListItemFragment on GitaChapterModel {\n  name\n  chapterSummary\n  chapterNumber\n  nameTransliterated\n  nameTranslated\n  versesCount\n  nameMeaning\n  id\n}\n"
   }
 };
 })();
-(node as any).hash = '7b12be37b57c1e5edcafda13c66d335d';
+(node as any).hash = '687e794763a83ce07606af0243e953c0';
 export default node;

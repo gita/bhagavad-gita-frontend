@@ -5,14 +5,10 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type VerseById_VerseDataFragment = {
-    readonly _id: string | null;
-    readonly title: string | null;
+    readonly id: string;
     readonly text: string | null;
-    readonly transliteration: string | null;
-    readonly verse_number: number | null;
-    readonly verse_order: number | null;
-    readonly meaning: string | null;
-    readonly word_meanings: string | null;
+    readonly verseNumber: number | null;
+    readonly chapterNumber: number | null;
     readonly " $refType": "VerseById_VerseDataFragment";
 };
 export type VerseById_VerseDataFragment$data = VerseById_VerseDataFragment;
@@ -33,14 +29,7 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "_id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
+      "name": "id",
       "storageKey": null
     },
     {
@@ -54,40 +43,19 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "transliteration",
+      "name": "verseNumber",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "verse_number",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "verse_order",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "meaning",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "word_meanings",
+      "name": "chapterNumber",
       "storageKey": null
     }
   ],
-  "type": "GitaVerse",
+  "type": "GitaVerseModel",
   "abstractKey": null
 };
-(node as any).hash = '9b7749943dd7f5604c787fe621839461';
+(node as any).hash = '66588d21b09124d0b9d3576ce72069d9';
 export default node;

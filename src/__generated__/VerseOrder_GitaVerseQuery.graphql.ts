@@ -5,13 +5,13 @@
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type VerseOrder_GitaVerseQueryVariables = {
-    verse_order: number;
+    verseNumber?: number | null;
 };
 export type VerseOrder_GitaVerseQueryResponse = {
-    readonly allGitaVerse: ReadonlyArray<{
-        readonly _id: string | null;
+    readonly verses: ReadonlyArray<{
+        readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"VerseById_VerseDataFragment">;
-    }>;
+    } | null> | null;
 };
 export type VerseOrder_GitaVerseQuery = {
     readonly response: VerseOrder_GitaVerseQueryResponse;
@@ -22,23 +22,19 @@ export type VerseOrder_GitaVerseQuery = {
 
 /*
 query VerseOrder_GitaVerseQuery(
-  $verse_order: Float!
+  $verseNumber: Int
 ) {
-  allGitaVerse(where: {chapter_number: {eq: $verse_order}}) {
-    _id
+  verses(verseNumber: $verseNumber) {
+    id
     ...VerseById_VerseDataFragment
   }
 }
 
-fragment VerseById_VerseDataFragment on GitaVerse {
-  _id
-  title
+fragment VerseById_VerseDataFragment on GitaVerseModel {
+  id
   text
-  transliteration
-  verse_number
-  verse_order
-  meaning
-  word_meanings
+  verseNumber
+  chapterNumber
 }
 */
 
@@ -47,33 +43,21 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "verse_order"
+    "name": "verseNumber"
   }
 ],
 v1 = [
   {
-    "fields": [
-      {
-        "fields": [
-          {
-            "kind": "Variable",
-            "name": "eq",
-            "variableName": "verse_order"
-          }
-        ],
-        "kind": "ObjectValue",
-        "name": "chapter_number"
-      }
-    ],
-    "kind": "ObjectValue",
-    "name": "where"
+    "kind": "Variable",
+    "name": "verseNumber",
+    "variableName": "verseNumber"
   }
 ],
 v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "_id",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -86,9 +70,9 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "GitaVerse",
+        "concreteType": "GitaVerseModel",
         "kind": "LinkedField",
-        "name": "allGitaVerse",
+        "name": "verses",
         "plural": true,
         "selections": [
           (v2/*: any*/),
@@ -101,7 +85,7 @@ return {
         "storageKey": null
       }
     ],
-    "type": "RootQuery",
+    "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
@@ -113,19 +97,12 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "GitaVerse",
+        "concreteType": "GitaVerseModel",
         "kind": "LinkedField",
-        "name": "allGitaVerse",
+        "name": "verses",
         "plural": true,
         "selections": [
           (v2/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "title",
-            "storageKey": null
-          },
           {
             "alias": null,
             "args": null,
@@ -137,35 +114,14 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "transliteration",
+            "name": "verseNumber",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "verse_number",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "verse_order",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "meaning",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "word_meanings",
+            "name": "chapterNumber",
             "storageKey": null
           }
         ],
@@ -174,14 +130,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c79ef1dff3ab80998ff398ec891c297a",
+    "cacheID": "b1359f3e3288cbddb5133233eaeb64ff",
     "id": null,
     "metadata": {},
     "name": "VerseOrder_GitaVerseQuery",
     "operationKind": "query",
-    "text": "query VerseOrder_GitaVerseQuery(\n  $verse_order: Float!\n) {\n  allGitaVerse(where: {chapter_number: {eq: $verse_order}}) {\n    _id\n    ...VerseById_VerseDataFragment\n  }\n}\n\nfragment VerseById_VerseDataFragment on GitaVerse {\n  _id\n  title\n  text\n  transliteration\n  verse_number\n  verse_order\n  meaning\n  word_meanings\n}\n"
+    "text": "query VerseOrder_GitaVerseQuery(\n  $verseNumber: Int\n) {\n  verses(verseNumber: $verseNumber) {\n    id\n    ...VerseById_VerseDataFragment\n  }\n}\n\nfragment VerseById_VerseDataFragment on GitaVerseModel {\n  id\n  text\n  verseNumber\n  chapterNumber\n}\n"
   }
 };
 })();
-(node as any).hash = 'd70216667343c1117a9f0bb6b6d51f22';
+(node as any).hash = 'e06c5eac46dc8010c188dc88d7626fa0';
 export default node;

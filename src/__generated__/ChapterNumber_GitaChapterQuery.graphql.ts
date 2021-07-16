@@ -5,13 +5,13 @@
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type ChapterNumber_GitaChapterQueryVariables = {
-    chapter_number: number;
+    chapterNumber?: number | null;
 };
 export type ChapterNumber_GitaChapterQueryResponse = {
-    readonly allGitaChapter: ReadonlyArray<{
-        readonly _id: string | null;
+    readonly chapters: ReadonlyArray<{
+        readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"ChapterById_ChapterDataFragment">;
-    }>;
+    } | null> | null;
 };
 export type ChapterNumber_GitaChapterQuery = {
     readonly response: ChapterNumber_GitaChapterQueryResponse;
@@ -22,34 +22,26 @@ export type ChapterNumber_GitaChapterQuery = {
 
 /*
 query ChapterNumber_GitaChapterQuery(
-  $chapter_number: Float!
+  $chapterNumber: Int
 ) {
-  allGitaChapter(where: {chapter_number: {eq: $chapter_number}}) {
-    _id
+  chapters(chapterNumber: $chapterNumber) {
+    id
     ...ChapterById_ChapterDataFragment
   }
 }
 
-fragment ChapterById_ChapterDataFragment on GitaChapter {
+fragment ChapterById_ChapterDataFragment on GitaChapterModel {
   name
-  title
-  chapter_number
-  chapter_summary
-  name_meaning
-  name_translation
-  name_transliterated
+  chapterSummary
+  chapterNumber
+  nameTransliterated
+  nameTranslated
+  versesCount
+  nameMeaning
   verses {
-    _id
-    title
+    id
     text
-    slug {
-      current
-    }
-    transliteration
-    verse_number
-    verse_order
-    meaning
-    word_meanings
+    verseNumber
   }
 }
 */
@@ -59,40 +51,21 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "chapter_number"
+    "name": "chapterNumber"
   }
 ],
 v1 = [
   {
-    "fields": [
-      {
-        "fields": [
-          {
-            "kind": "Variable",
-            "name": "eq",
-            "variableName": "chapter_number"
-          }
-        ],
-        "kind": "ObjectValue",
-        "name": "chapter_number"
-      }
-    ],
-    "kind": "ObjectValue",
-    "name": "where"
+    "kind": "Variable",
+    "name": "chapterNumber",
+    "variableName": "chapterNumber"
   }
 ],
 v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "_id",
-  "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -105,9 +78,9 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "GitaChapter",
+        "concreteType": "GitaChapterModel",
         "kind": "LinkedField",
-        "name": "allGitaChapter",
+        "name": "chapters",
         "plural": true,
         "selections": [
           (v2/*: any*/),
@@ -120,7 +93,7 @@ return {
         "storageKey": null
       }
     ],
-    "type": "RootQuery",
+    "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
@@ -132,9 +105,9 @@ return {
       {
         "alias": null,
         "args": (v1/*: any*/),
-        "concreteType": "GitaChapter",
+        "concreteType": "GitaChapterModel",
         "kind": "LinkedField",
-        "name": "allGitaChapter",
+        "name": "chapters",
         "plural": true,
         "selections": [
           (v2/*: any*/),
@@ -145,52 +118,57 @@ return {
             "name": "name",
             "storageKey": null
           },
-          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "chapter_number",
+            "name": "chapterSummary",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "chapter_summary",
+            "name": "chapterNumber",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "name_meaning",
+            "name": "nameTransliterated",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "name_translation",
+            "name": "nameTranslated",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "name_transliterated",
+            "name": "versesCount",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
-            "concreteType": "GitaVerse",
+            "kind": "ScalarField",
+            "name": "nameMeaning",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "GitaVerseModel",
             "kind": "LinkedField",
             "name": "verses",
             "plural": true,
             "selections": [
               (v2/*: any*/),
-              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -201,54 +179,8 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Slug",
-                "kind": "LinkedField",
-                "name": "slug",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "current",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
                 "kind": "ScalarField",
-                "name": "transliteration",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "verse_number",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "verse_order",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "meaning",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "word_meanings",
+                "name": "verseNumber",
                 "storageKey": null
               }
             ],
@@ -260,14 +192,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "93f8ad2391049f7a441efbbfc137ce09",
+    "cacheID": "34135e953c3be12d04a8910d65c4c0db",
     "id": null,
     "metadata": {},
     "name": "ChapterNumber_GitaChapterQuery",
     "operationKind": "query",
-    "text": "query ChapterNumber_GitaChapterQuery(\n  $chapter_number: Float!\n) {\n  allGitaChapter(where: {chapter_number: {eq: $chapter_number}}) {\n    _id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapter {\n  name\n  title\n  chapter_number\n  chapter_summary\n  name_meaning\n  name_translation\n  name_transliterated\n  verses {\n    _id\n    title\n    text\n    slug {\n      current\n    }\n    transliteration\n    verse_number\n    verse_order\n    meaning\n    word_meanings\n  }\n}\n"
+    "text": "query ChapterNumber_GitaChapterQuery(\n  $chapterNumber: Int\n) {\n  chapters(chapterNumber: $chapterNumber) {\n    id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapterModel {\n  name\n  chapterSummary\n  chapterNumber\n  nameTransliterated\n  nameTranslated\n  versesCount\n  nameMeaning\n  verses {\n    id\n    text\n    verseNumber\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '065121eb8a67148f6db3038045b31667';
+(node as any).hash = 'c58df488415e0c622ee2fc0d72d2a2f1';
 export default node;

@@ -11,9 +11,9 @@ import { Layout } from '@/components/Layout';
 export interface IChapterPageProps {}
 
 const ChapterQuery = graphql`
-  query ChapterNumber_GitaChapterQuery($chapter_number: Float!) {
-    allGitaChapter(where: { chapter_number: { eq: $chapter_number } }) {
-      _id
+  query ChapterNumber_GitaChapterQuery($chapterNumber: Int) {
+    chapters(chapterNumber: $chapterNumber) {
+      id
       ...ChapterById_ChapterDataFragment
     }
   }
@@ -22,9 +22,9 @@ const ChapterQuery = graphql`
 function HandleData({
   preloadedQuery,
 }: RelayProps<{}, ChapterNumber_GitaChapterQuery>) {
-  const { allGitaChapter } = usePreloadedQuery(ChapterQuery, preloadedQuery);
-  if (allGitaChapter && allGitaChapter[0]) {
-    return <ChapterById chapterById={allGitaChapter[0]} />;
+  const { chapters } = usePreloadedQuery(ChapterQuery, preloadedQuery);
+  if (chapters && chapters[0]) {
+    return <ChapterById chapterById={chapters[0]} />;
   }
   return null;
 }
@@ -49,10 +49,10 @@ export default withRelay(ChapterPage, ChapterQuery, {
     return getRelayServerEnvironment();
   },
   variablesFromContext: (context) => {
-    const { chapter_number } = context.query;
+    const { chpaterNumber } = context.query;
 
     return {
-      chapter_number: typeof chapter_number === 'string' ? parseFloat(5) : 1,
+      chpaterNumber: typeof chpaterNumber === 'string' ? parseInt(chpaterNumber) : chpaterNumber,
     };
   },
 });

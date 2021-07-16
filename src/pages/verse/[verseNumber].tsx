@@ -11,9 +11,9 @@ import { Layout } from '@/components/Layout';
 export interface IChapterPageProps {}
 
 const VerseQuery = graphql`
-  query VerseOrder_GitaVerseQuery($verse_order: Float!) {
-    allGitaVerse(where: { chapter_number: { eq: $verse_order } }) {
-      _id
+  query VerseOrder_GitaVerseQuery($verseNumber: Int) {
+    verses(verseNumber: $verseNumber) {
+      id
       ...VerseById_VerseDataFragment
     }
   }
@@ -22,17 +22,14 @@ const VerseQuery = graphql`
 function HandleData({
   preloadedQuery,
 }: RelayProps<{}, VerseOrder_GitaVerseQuery>) {
-  const query = usePreloadedQuery<VerseOrder_GitaVerseQuery>(
+  const {verses} = usePreloadedQuery<VerseOrder_GitaVerseQuery>(
     VerseQuery,
     preloadedQuery
   );
-  const router = useRouter();
-  const { id, slug } = router.query;
-  const stringId = Array.isArray(id) ? id[0] : id;
-  if (stringId) {
-    return <VerseById query={query} />;
+  if (verses && verses[0]) {
+    return <VerseById verse={verses[0]} />;
   }
-  return null;
+  return null; 
 }
 
 function VersePage(props: RelayProps<{}, VerseOrder_GitaVerseQuery>) {
@@ -53,5 +50,12 @@ export default withRelay(VersePage, VerseQuery, {
     );
 
     return getRelayServerEnvironment();
+  },
+  variablesFromContext: (context) => {
+    const { verseNumber } = context.query;
+    console.log(verseNumber)
+    return {
+      verseNumber: typeof verseNumber === 'string' ? parseInt(verseNumber) : verse_order,
+    };
   },
 });

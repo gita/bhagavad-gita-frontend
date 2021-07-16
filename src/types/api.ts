@@ -15,814 +15,96 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  Date: any;
-  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  DateTime: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: any;
 };
 
-export type Block = {
-  readonly __typename?: 'Block';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly children?: Maybe<ReadonlyArray<Maybe<Span>>>;
-  readonly style?: Maybe<Scalars['String']>;
-  readonly list?: Maybe<Scalars['String']>;
-};
-
-export type BlockOrImage = Block | Image;
-
-export type BooleanFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['Boolean']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['Boolean']>;
-};
-
-export type DateFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['Date']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['Date']>;
-  /** Checks if the value is greater than the given input. */
-  readonly gt?: Maybe<Scalars['Date']>;
-  /** Checks if the value is greater than or equal to the given input. */
-  readonly gte?: Maybe<Scalars['Date']>;
-  /** Checks if the value is lesser than the given input. */
-  readonly lt?: Maybe<Scalars['Date']>;
-  /** Checks if the value is lesser than or equal to the given input. */
-  readonly lte?: Maybe<Scalars['Date']>;
-};
-
-export type DatetimeFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['DateTime']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['DateTime']>;
-  /** Checks if the value is greater than the given input. */
-  readonly gt?: Maybe<Scalars['DateTime']>;
-  /** Checks if the value is greater than or equal to the given input. */
-  readonly gte?: Maybe<Scalars['DateTime']>;
-  /** Checks if the value is lesser than the given input. */
-  readonly lt?: Maybe<Scalars['DateTime']>;
-  /** Checks if the value is lesser than or equal to the given input. */
-  readonly lte?: Maybe<Scalars['DateTime']>;
-};
-
-/** A Sanity document */
-export type Document = {
-  /** Document ID */
-  readonly _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  readonly _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  readonly _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  readonly _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  readonly _rev?: Maybe<Scalars['String']>;
-};
-
-export type DocumentFilter = {
-  /** Apply filters on document level */
-  readonly _?: Maybe<Sanity_DocumentFilter>;
-  readonly _id?: Maybe<IdFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly _createdAt?: Maybe<DatetimeFilter>;
-  readonly _updatedAt?: Maybe<DatetimeFilter>;
-  readonly _rev?: Maybe<StringFilter>;
-};
-
-export type DocumentSorting = {
-  readonly _id?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly _createdAt?: Maybe<SortOrder>;
-  readonly _updatedAt?: Maybe<SortOrder>;
-  readonly _rev?: Maybe<SortOrder>;
-};
-
-export type File = {
-  readonly __typename?: 'File';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly asset?: Maybe<SanityFileAsset>;
-};
-
-export type FileFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly asset?: Maybe<SanityFileAssetFilter>;
-};
-
-export type FileSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-};
-
-export type FloatFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['Float']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['Float']>;
-  /** Checks if the value is greater than the given input. */
-  readonly gt?: Maybe<Scalars['Float']>;
-  /** Checks if the value is greater than or equal to the given input. */
-  readonly gte?: Maybe<Scalars['Float']>;
-  /** Checks if the value is lesser than the given input. */
-  readonly lt?: Maybe<Scalars['Float']>;
-  /** Checks if the value is lesser than or equal to the given input. */
-  readonly lte?: Maybe<Scalars['Float']>;
-};
-
-export type Geopoint = {
-  readonly __typename?: 'Geopoint';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly lat?: Maybe<Scalars['Float']>;
-  readonly lng?: Maybe<Scalars['Float']>;
-  readonly alt?: Maybe<Scalars['Float']>;
-};
-
-export type GeopointFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly lat?: Maybe<FloatFilter>;
-  readonly lng?: Maybe<FloatFilter>;
-  readonly alt?: Maybe<FloatFilter>;
-};
-
-export type GeopointSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly lat?: Maybe<SortOrder>;
-  readonly lng?: Maybe<SortOrder>;
-  readonly alt?: Maybe<SortOrder>;
-};
-
-export type GitaChapter = Document & {
-  readonly __typename?: 'GitaChapter';
-  /** Document ID */
-  readonly _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  readonly _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  readonly _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  readonly _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  readonly _rev?: Maybe<Scalars['String']>;
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
-  readonly slug?: Maybe<Slug>;
+export type GitaChapterModel = {
+  readonly __typename?: 'GitaChapterModel';
+  readonly id: Scalars['ID'];
   readonly name?: Maybe<Scalars['String']>;
-  readonly name_transliterated?: Maybe<Scalars['String']>;
-  readonly name_translation?: Maybe<Scalars['String']>;
-  readonly verses_count?: Maybe<Scalars['Float']>;
-  readonly chapter_number?: Maybe<Scalars['Float']>;
-  readonly externalId?: Maybe<Scalars['Float']>;
-  readonly name_meaning?: Maybe<Scalars['String']>;
-  readonly image_name?: Maybe<Scalars['String']>;
-  readonly chapter_summary?: Maybe<Scalars['String']>;
-  readonly verses?: Maybe<ReadonlyArray<Maybe<GitaVerse>>>;
+  readonly nameTransliterated?: Maybe<Scalars['String']>;
+  readonly nameTranslated?: Maybe<Scalars['String']>;
+  readonly versesCount?: Maybe<Scalars['Int']>;
+  readonly chapterNumber?: Maybe<Scalars['Int']>;
+  readonly nameMeaning?: Maybe<Scalars['String']>;
+  readonly chapterSummary?: Maybe<Scalars['String']>;
+  readonly verses?: Maybe<ReadonlyArray<Maybe<GitaVerseModel>>>;
 };
 
-export type GitaChapterFilter = {
-  /** Apply filters on document level */
-  readonly _?: Maybe<Sanity_DocumentFilter>;
-  readonly _id?: Maybe<IdFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly _createdAt?: Maybe<DatetimeFilter>;
-  readonly _updatedAt?: Maybe<DatetimeFilter>;
-  readonly _rev?: Maybe<StringFilter>;
-  readonly _key?: Maybe<StringFilter>;
-  readonly title?: Maybe<StringFilter>;
-  readonly slug?: Maybe<SlugFilter>;
-  readonly name?: Maybe<StringFilter>;
-  readonly name_transliterated?: Maybe<StringFilter>;
-  readonly name_translation?: Maybe<StringFilter>;
-  readonly verses_count?: Maybe<FloatFilter>;
-  readonly chapter_number?: Maybe<FloatFilter>;
-  readonly externalId?: Maybe<FloatFilter>;
-  readonly name_meaning?: Maybe<StringFilter>;
-  readonly image_name?: Maybe<StringFilter>;
-  readonly chapter_summary?: Maybe<StringFilter>;
-};
-
-export type GitaChapterSorting = {
-  readonly _id?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly _createdAt?: Maybe<SortOrder>;
-  readonly _updatedAt?: Maybe<SortOrder>;
-  readonly _rev?: Maybe<SortOrder>;
-  readonly _key?: Maybe<SortOrder>;
-  readonly title?: Maybe<SortOrder>;
-  readonly slug?: Maybe<SlugSorting>;
-  readonly name?: Maybe<SortOrder>;
-  readonly name_transliterated?: Maybe<SortOrder>;
-  readonly name_translation?: Maybe<SortOrder>;
-  readonly verses_count?: Maybe<SortOrder>;
-  readonly chapter_number?: Maybe<SortOrder>;
-  readonly externalId?: Maybe<SortOrder>;
-  readonly name_meaning?: Maybe<SortOrder>;
-  readonly image_name?: Maybe<SortOrder>;
-  readonly chapter_summary?: Maybe<SortOrder>;
-};
-
-export type GitaVerse = Document & {
-  readonly __typename?: 'GitaVerse';
-  /** Document ID */
-  readonly _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  readonly _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  readonly _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  readonly _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  readonly _rev?: Maybe<Scalars['String']>;
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
-  readonly slug?: Maybe<Slug>;
-  readonly chapter?: Maybe<GitaChapter>;
-  readonly chapter_number?: Maybe<Scalars['Float']>;
-  readonly verse_order?: Maybe<Scalars['Float']>;
-  readonly verse_number?: Maybe<Scalars['Float']>;
-  readonly overviewRaw?: Maybe<Scalars['JSON']>;
-  readonly text?: Maybe<Scalars['String']>;
-  readonly transliteration?: Maybe<Scalars['String']>;
-  readonly word_meanings?: Maybe<Scalars['String']>;
-  readonly externalId?: Maybe<Scalars['Float']>;
-  readonly meaning?: Maybe<Scalars['String']>;
-};
-
-export type GitaVerseFilter = {
-  /** Apply filters on document level */
-  readonly _?: Maybe<Sanity_DocumentFilter>;
-  readonly _id?: Maybe<IdFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly _createdAt?: Maybe<DatetimeFilter>;
-  readonly _updatedAt?: Maybe<DatetimeFilter>;
-  readonly _rev?: Maybe<StringFilter>;
-  readonly _key?: Maybe<StringFilter>;
-  readonly title?: Maybe<StringFilter>;
-  readonly slug?: Maybe<SlugFilter>;
-  readonly chapter?: Maybe<GitaChapterFilter>;
-  readonly chapter_number?: Maybe<FloatFilter>;
-  readonly verse_order?: Maybe<FloatFilter>;
-  readonly verse_number?: Maybe<FloatFilter>;
-  readonly text?: Maybe<StringFilter>;
-  readonly transliteration?: Maybe<StringFilter>;
-  readonly word_meanings?: Maybe<StringFilter>;
-  readonly externalId?: Maybe<FloatFilter>;
-  readonly meaning?: Maybe<StringFilter>;
-};
-
-export type GitaVerseSorting = {
-  readonly _id?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly _createdAt?: Maybe<SortOrder>;
-  readonly _updatedAt?: Maybe<SortOrder>;
-  readonly _rev?: Maybe<SortOrder>;
-  readonly _key?: Maybe<SortOrder>;
-  readonly title?: Maybe<SortOrder>;
-  readonly slug?: Maybe<SlugSorting>;
-  readonly chapter_number?: Maybe<SortOrder>;
-  readonly verse_order?: Maybe<SortOrder>;
-  readonly verse_number?: Maybe<SortOrder>;
-  readonly text?: Maybe<SortOrder>;
-  readonly transliteration?: Maybe<SortOrder>;
-  readonly word_meanings?: Maybe<SortOrder>;
-  readonly externalId?: Maybe<SortOrder>;
-  readonly meaning?: Maybe<SortOrder>;
-};
-
-export type IdFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['ID']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['ID']>;
-  /** Checks if the value matches the given word/words. */
-  readonly matches?: Maybe<Scalars['ID']>;
-  readonly in?: Maybe<ReadonlyArray<Scalars['ID']>>;
-  readonly nin?: Maybe<ReadonlyArray<Scalars['ID']>>;
-};
-
-export type Image = {
-  readonly __typename?: 'Image';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly asset?: Maybe<SanityImageAsset>;
-  readonly hotspot?: Maybe<SanityImageHotspot>;
-  readonly crop?: Maybe<SanityImageCrop>;
-};
-
-export type ImageFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly asset?: Maybe<SanityImageAssetFilter>;
-  readonly hotspot?: Maybe<SanityImageHotspotFilter>;
-  readonly crop?: Maybe<SanityImageCropFilter>;
-};
-
-export type ImageSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly hotspot?: Maybe<SanityImageHotspotSorting>;
-  readonly crop?: Maybe<SanityImageCropSorting>;
-};
-
-export type IntFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['Int']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['Int']>;
-  /** Checks if the value is greater than the given input. */
-  readonly gt?: Maybe<Scalars['Int']>;
-  /** Checks if the value is greater than or equal to the given input. */
-  readonly gte?: Maybe<Scalars['Int']>;
-  /** Checks if the value is lesser than the given input. */
-  readonly lt?: Maybe<Scalars['Int']>;
-  /** Checks if the value is lesser than or equal to the given input. */
-  readonly lte?: Maybe<Scalars['Int']>;
-};
-
-export type RootQuery = {
-  readonly __typename?: 'RootQuery';
-  readonly GitaChapter?: Maybe<GitaChapter>;
-  readonly GitaVerse?: Maybe<GitaVerse>;
-  readonly SanityImageAsset?: Maybe<SanityImageAsset>;
-  readonly SanityFileAsset?: Maybe<SanityFileAsset>;
-  readonly Document?: Maybe<Document>;
-  readonly allGitaChapter: ReadonlyArray<GitaChapter>;
-  readonly allGitaVerse: ReadonlyArray<GitaVerse>;
-  readonly allSanityImageAsset: ReadonlyArray<SanityImageAsset>;
-  readonly allSanityFileAsset: ReadonlyArray<SanityFileAsset>;
-  readonly allDocument: ReadonlyArray<Document>;
-};
-
-export type RootQueryGitaChapterArgs = {
-  id: Scalars['ID'];
-};
-
-export type RootQueryGitaVerseArgs = {
-  id: Scalars['ID'];
-};
-
-export type RootQuerySanityImageAssetArgs = {
-  id: Scalars['ID'];
-};
-
-export type RootQuerySanityFileAssetArgs = {
-  id: Scalars['ID'];
-};
-
-export type RootQueryDocumentArgs = {
-  id: Scalars['ID'];
-};
-
-export type RootQueryAllGitaChapterArgs = {
-  where?: Maybe<GitaChapterFilter>;
-  sort?: Maybe<ReadonlyArray<GitaChapterSorting>>;
+export type GitaChapterModelVersesArgs = {
+  verseNumber?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
 };
 
-export type RootQueryAllGitaVerseArgs = {
-  where?: Maybe<GitaVerseFilter>;
-  sort?: Maybe<ReadonlyArray<GitaVerseSorting>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-export type RootQueryAllSanityImageAssetArgs = {
-  where?: Maybe<SanityImageAssetFilter>;
-  sort?: Maybe<ReadonlyArray<SanityImageAssetSorting>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-export type RootQueryAllSanityFileAssetArgs = {
-  where?: Maybe<SanityFileAssetFilter>;
-  sort?: Maybe<ReadonlyArray<SanityFileAssetSorting>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-export type RootQueryAllDocumentArgs = {
-  where?: Maybe<DocumentFilter>;
-  sort?: Maybe<ReadonlyArray<DocumentSorting>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-export type SanityAssetSourceData = {
-  readonly __typename?: 'SanityAssetSourceData';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  /** A canonical name for the source this asset is originating from */
-  readonly name?: Maybe<Scalars['String']>;
-  /** The unique ID for the asset within the originating source so you can programatically find back to it */
-  readonly id?: Maybe<Scalars['String']>;
-  /** A URL to find more information about this asset in the originating source */
-  readonly url?: Maybe<Scalars['String']>;
-};
-
-export type SanityAssetSourceDataFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly name?: Maybe<StringFilter>;
-  readonly id?: Maybe<StringFilter>;
-  readonly url?: Maybe<StringFilter>;
-};
-
-export type SanityAssetSourceDataSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly name?: Maybe<SortOrder>;
-  readonly id?: Maybe<SortOrder>;
-  readonly url?: Maybe<SortOrder>;
-};
-
-export type SanityFileAsset = Document & {
-  readonly __typename?: 'SanityFileAsset';
-  /** Document ID */
-  readonly _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  readonly _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  readonly _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  readonly _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  readonly _rev?: Maybe<Scalars['String']>;
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly originalFilename?: Maybe<Scalars['String']>;
-  readonly label?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
+export type GitaCommentryModel = {
+  readonly __typename?: 'GitaCommentryModel';
+  readonly id: Scalars['ID'];
   readonly description?: Maybe<Scalars['String']>;
-  readonly altText?: Maybe<Scalars['String']>;
-  readonly sha1hash?: Maybe<Scalars['String']>;
-  readonly extension?: Maybe<Scalars['String']>;
-  readonly mimeType?: Maybe<Scalars['String']>;
-  readonly size?: Maybe<Scalars['Float']>;
-  readonly assetId?: Maybe<Scalars['String']>;
-  readonly path?: Maybe<Scalars['String']>;
-  readonly url?: Maybe<Scalars['String']>;
-  readonly source?: Maybe<SanityAssetSourceData>;
+  readonly authorName?: Maybe<Scalars['String']>;
+  readonly language?: Maybe<Scalars['String']>;
+  readonly verseId?: Maybe<Scalars['Int']>;
+  readonly authorId?: Maybe<Scalars['Int']>;
+  readonly languageId?: Maybe<Scalars['Int']>;
+  readonly gitaVerses?: Maybe<GitaVerseModel>;
 };
 
-export type SanityFileAssetFilter = {
-  /** Apply filters on document level */
-  readonly _?: Maybe<Sanity_DocumentFilter>;
-  readonly _id?: Maybe<IdFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly _createdAt?: Maybe<DatetimeFilter>;
-  readonly _updatedAt?: Maybe<DatetimeFilter>;
-  readonly _rev?: Maybe<StringFilter>;
-  readonly _key?: Maybe<StringFilter>;
-  readonly originalFilename?: Maybe<StringFilter>;
-  readonly label?: Maybe<StringFilter>;
-  readonly title?: Maybe<StringFilter>;
-  readonly description?: Maybe<StringFilter>;
-  readonly altText?: Maybe<StringFilter>;
-  readonly sha1hash?: Maybe<StringFilter>;
-  readonly extension?: Maybe<StringFilter>;
-  readonly mimeType?: Maybe<StringFilter>;
-  readonly size?: Maybe<FloatFilter>;
-  readonly assetId?: Maybe<StringFilter>;
-  readonly path?: Maybe<StringFilter>;
-  readonly url?: Maybe<StringFilter>;
-  readonly source?: Maybe<SanityAssetSourceDataFilter>;
-};
-
-export type SanityFileAssetSorting = {
-  readonly _id?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly _createdAt?: Maybe<SortOrder>;
-  readonly _updatedAt?: Maybe<SortOrder>;
-  readonly _rev?: Maybe<SortOrder>;
-  readonly _key?: Maybe<SortOrder>;
-  readonly originalFilename?: Maybe<SortOrder>;
-  readonly label?: Maybe<SortOrder>;
-  readonly title?: Maybe<SortOrder>;
-  readonly description?: Maybe<SortOrder>;
-  readonly altText?: Maybe<SortOrder>;
-  readonly sha1hash?: Maybe<SortOrder>;
-  readonly extension?: Maybe<SortOrder>;
-  readonly mimeType?: Maybe<SortOrder>;
-  readonly size?: Maybe<SortOrder>;
-  readonly assetId?: Maybe<SortOrder>;
-  readonly path?: Maybe<SortOrder>;
-  readonly url?: Maybe<SortOrder>;
-  readonly source?: Maybe<SanityAssetSourceDataSorting>;
-};
-
-export type SanityImageAsset = Document & {
-  readonly __typename?: 'SanityImageAsset';
-  /** Document ID */
-  readonly _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  readonly _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  readonly _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  readonly _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  readonly _rev?: Maybe<Scalars['String']>;
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly originalFilename?: Maybe<Scalars['String']>;
-  readonly label?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
+export type GitaTranslationModel = {
+  readonly __typename?: 'GitaTranslationModel';
+  readonly id: Scalars['ID'];
   readonly description?: Maybe<Scalars['String']>;
-  readonly altText?: Maybe<Scalars['String']>;
-  readonly sha1hash?: Maybe<Scalars['String']>;
-  readonly extension?: Maybe<Scalars['String']>;
-  readonly mimeType?: Maybe<Scalars['String']>;
-  readonly size?: Maybe<Scalars['Float']>;
-  readonly assetId?: Maybe<Scalars['String']>;
-  readonly path?: Maybe<Scalars['String']>;
-  readonly url?: Maybe<Scalars['String']>;
-  readonly metadata?: Maybe<SanityImageMetadata>;
-  readonly source?: Maybe<SanityAssetSourceData>;
+  readonly authorName?: Maybe<Scalars['String']>;
+  readonly language?: Maybe<Scalars['String']>;
+  readonly verseId?: Maybe<Scalars['Int']>;
+  readonly authorId?: Maybe<Scalars['Int']>;
+  readonly languageId?: Maybe<Scalars['Int']>;
+  readonly gitaVerses?: Maybe<GitaVerseModel>;
 };
 
-export type SanityImageAssetFilter = {
-  /** Apply filters on document level */
-  readonly _?: Maybe<Sanity_DocumentFilter>;
-  readonly _id?: Maybe<IdFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly _createdAt?: Maybe<DatetimeFilter>;
-  readonly _updatedAt?: Maybe<DatetimeFilter>;
-  readonly _rev?: Maybe<StringFilter>;
-  readonly _key?: Maybe<StringFilter>;
-  readonly originalFilename?: Maybe<StringFilter>;
-  readonly label?: Maybe<StringFilter>;
-  readonly title?: Maybe<StringFilter>;
-  readonly description?: Maybe<StringFilter>;
-  readonly altText?: Maybe<StringFilter>;
-  readonly sha1hash?: Maybe<StringFilter>;
-  readonly extension?: Maybe<StringFilter>;
-  readonly mimeType?: Maybe<StringFilter>;
-  readonly size?: Maybe<FloatFilter>;
-  readonly assetId?: Maybe<StringFilter>;
-  readonly path?: Maybe<StringFilter>;
-  readonly url?: Maybe<StringFilter>;
-  readonly metadata?: Maybe<SanityImageMetadataFilter>;
-  readonly source?: Maybe<SanityAssetSourceDataFilter>;
-};
-
-export type SanityImageAssetSorting = {
-  readonly _id?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly _createdAt?: Maybe<SortOrder>;
-  readonly _updatedAt?: Maybe<SortOrder>;
-  readonly _rev?: Maybe<SortOrder>;
-  readonly _key?: Maybe<SortOrder>;
-  readonly originalFilename?: Maybe<SortOrder>;
-  readonly label?: Maybe<SortOrder>;
-  readonly title?: Maybe<SortOrder>;
-  readonly description?: Maybe<SortOrder>;
-  readonly altText?: Maybe<SortOrder>;
-  readonly sha1hash?: Maybe<SortOrder>;
-  readonly extension?: Maybe<SortOrder>;
-  readonly mimeType?: Maybe<SortOrder>;
-  readonly size?: Maybe<SortOrder>;
-  readonly assetId?: Maybe<SortOrder>;
-  readonly path?: Maybe<SortOrder>;
-  readonly url?: Maybe<SortOrder>;
-  readonly metadata?: Maybe<SanityImageMetadataSorting>;
-  readonly source?: Maybe<SanityAssetSourceDataSorting>;
-};
-
-export type SanityImageCrop = {
-  readonly __typename?: 'SanityImageCrop';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly top?: Maybe<Scalars['Float']>;
-  readonly bottom?: Maybe<Scalars['Float']>;
-  readonly left?: Maybe<Scalars['Float']>;
-  readonly right?: Maybe<Scalars['Float']>;
-};
-
-export type SanityImageCropFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly top?: Maybe<FloatFilter>;
-  readonly bottom?: Maybe<FloatFilter>;
-  readonly left?: Maybe<FloatFilter>;
-  readonly right?: Maybe<FloatFilter>;
-};
-
-export type SanityImageCropSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly top?: Maybe<SortOrder>;
-  readonly bottom?: Maybe<SortOrder>;
-  readonly left?: Maybe<SortOrder>;
-  readonly right?: Maybe<SortOrder>;
-};
-
-export type SanityImageDimensions = {
-  readonly __typename?: 'SanityImageDimensions';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly height?: Maybe<Scalars['Float']>;
-  readonly width?: Maybe<Scalars['Float']>;
-  readonly aspectRatio?: Maybe<Scalars['Float']>;
-};
-
-export type SanityImageDimensionsFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly height?: Maybe<FloatFilter>;
-  readonly width?: Maybe<FloatFilter>;
-  readonly aspectRatio?: Maybe<FloatFilter>;
-};
-
-export type SanityImageDimensionsSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly height?: Maybe<SortOrder>;
-  readonly width?: Maybe<SortOrder>;
-  readonly aspectRatio?: Maybe<SortOrder>;
-};
-
-export type SanityImageHotspot = {
-  readonly __typename?: 'SanityImageHotspot';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly x?: Maybe<Scalars['Float']>;
-  readonly y?: Maybe<Scalars['Float']>;
-  readonly height?: Maybe<Scalars['Float']>;
-  readonly width?: Maybe<Scalars['Float']>;
-};
-
-export type SanityImageHotspotFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly x?: Maybe<FloatFilter>;
-  readonly y?: Maybe<FloatFilter>;
-  readonly height?: Maybe<FloatFilter>;
-  readonly width?: Maybe<FloatFilter>;
-};
-
-export type SanityImageHotspotSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly x?: Maybe<SortOrder>;
-  readonly y?: Maybe<SortOrder>;
-  readonly height?: Maybe<SortOrder>;
-  readonly width?: Maybe<SortOrder>;
-};
-
-export type SanityImageMetadata = {
-  readonly __typename?: 'SanityImageMetadata';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly location?: Maybe<Geopoint>;
-  readonly dimensions?: Maybe<SanityImageDimensions>;
-  readonly palette?: Maybe<SanityImagePalette>;
-  readonly lqip?: Maybe<Scalars['String']>;
-  readonly hasAlpha?: Maybe<Scalars['Boolean']>;
-  readonly isOpaque?: Maybe<Scalars['Boolean']>;
-};
-
-export type SanityImageMetadataFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly location?: Maybe<GeopointFilter>;
-  readonly dimensions?: Maybe<SanityImageDimensionsFilter>;
-  readonly palette?: Maybe<SanityImagePaletteFilter>;
-  readonly lqip?: Maybe<StringFilter>;
-  readonly hasAlpha?: Maybe<BooleanFilter>;
-  readonly isOpaque?: Maybe<BooleanFilter>;
-};
-
-export type SanityImageMetadataSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly location?: Maybe<GeopointSorting>;
-  readonly dimensions?: Maybe<SanityImageDimensionsSorting>;
-  readonly palette?: Maybe<SanityImagePaletteSorting>;
-  readonly lqip?: Maybe<SortOrder>;
-  readonly hasAlpha?: Maybe<SortOrder>;
-  readonly isOpaque?: Maybe<SortOrder>;
-};
-
-export type SanityImagePalette = {
-  readonly __typename?: 'SanityImagePalette';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly darkMuted?: Maybe<SanityImagePaletteSwatch>;
-  readonly lightVibrant?: Maybe<SanityImagePaletteSwatch>;
-  readonly darkVibrant?: Maybe<SanityImagePaletteSwatch>;
-  readonly vibrant?: Maybe<SanityImagePaletteSwatch>;
-  readonly dominant?: Maybe<SanityImagePaletteSwatch>;
-  readonly lightMuted?: Maybe<SanityImagePaletteSwatch>;
-  readonly muted?: Maybe<SanityImagePaletteSwatch>;
-};
-
-export type SanityImagePaletteFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly darkMuted?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly lightVibrant?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly darkVibrant?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly vibrant?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly dominant?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly lightMuted?: Maybe<SanityImagePaletteSwatchFilter>;
-  readonly muted?: Maybe<SanityImagePaletteSwatchFilter>;
-};
-
-export type SanityImagePaletteSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly darkMuted?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly lightVibrant?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly darkVibrant?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly vibrant?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly dominant?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly lightMuted?: Maybe<SanityImagePaletteSwatchSorting>;
-  readonly muted?: Maybe<SanityImagePaletteSwatchSorting>;
-};
-
-export type SanityImagePaletteSwatch = {
-  readonly __typename?: 'SanityImagePaletteSwatch';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly background?: Maybe<Scalars['String']>;
-  readonly foreground?: Maybe<Scalars['String']>;
-  readonly population?: Maybe<Scalars['Float']>;
-  readonly title?: Maybe<Scalars['String']>;
-};
-
-export type SanityImagePaletteSwatchFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly background?: Maybe<StringFilter>;
-  readonly foreground?: Maybe<StringFilter>;
-  readonly population?: Maybe<FloatFilter>;
-  readonly title?: Maybe<StringFilter>;
-};
-
-export type SanityImagePaletteSwatchSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly background?: Maybe<SortOrder>;
-  readonly foreground?: Maybe<SortOrder>;
-  readonly population?: Maybe<SortOrder>;
-  readonly title?: Maybe<SortOrder>;
-};
-
-export type Sanity_DocumentFilter = {
-  /** All documents referencing the given document ID. */
-  readonly references?: Maybe<Scalars['ID']>;
-  /** All documents that are drafts. */
-  readonly is_draft?: Maybe<Scalars['Boolean']>;
-};
-
-export type Slug = {
-  readonly __typename?: 'Slug';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly current?: Maybe<Scalars['String']>;
-};
-
-export type SlugFilter = {
-  readonly _key?: Maybe<StringFilter>;
-  readonly _type?: Maybe<StringFilter>;
-  readonly current?: Maybe<StringFilter>;
-};
-
-export type SlugSorting = {
-  readonly _key?: Maybe<SortOrder>;
-  readonly _type?: Maybe<SortOrder>;
-  readonly current?: Maybe<SortOrder>;
-};
-
-export type SortOrder =
-  /** Sorts on the value in ascending order. */
-  | 'ASC'
-  /** Sorts on the value in descending order. */
-  | 'DESC';
-
-export type Span = {
-  readonly __typename?: 'Span';
-  readonly _key?: Maybe<Scalars['String']>;
-  readonly _type?: Maybe<Scalars['String']>;
-  readonly marks?: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+export type GitaVerseModel = {
+  readonly __typename?: 'GitaVerseModel';
+  readonly id: Scalars['ID'];
+  readonly verseNumber?: Maybe<Scalars['Int']>;
+  readonly chapterNumber?: Maybe<Scalars['Int']>;
   readonly text?: Maybe<Scalars['String']>;
+  readonly chapterId?: Maybe<Scalars['Int']>;
+  readonly gitaChapters?: Maybe<GitaChapterModel>;
+  readonly translations?: Maybe<ReadonlyArray<Maybe<GitaTranslationModel>>>;
+  readonly commentaries?: Maybe<ReadonlyArray<Maybe<GitaCommentryModel>>>;
 };
 
-export type StringFilter = {
-  /** Checks if the value is equal to the given input. */
-  readonly eq?: Maybe<Scalars['String']>;
-  /** Checks if the value is not equal to the given input. */
-  readonly neq?: Maybe<Scalars['String']>;
-  /** Checks if the value matches the given word/words. */
-  readonly matches?: Maybe<Scalars['String']>;
-  readonly in?: Maybe<ReadonlyArray<Scalars['String']>>;
-  readonly nin?: Maybe<ReadonlyArray<Scalars['String']>>;
+export type GitaVerseModelTranslationsArgs = {
+  authorName?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+export type GitaVerseModelCommentariesArgs = {
+  authorName?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+export type Query = {
+  readonly __typename?: 'Query';
+  readonly chapters?: Maybe<ReadonlyArray<Maybe<GitaChapterModel>>>;
+  readonly verses?: Maybe<ReadonlyArray<Maybe<GitaVerseModel>>>;
+};
+
+export type QueryChaptersArgs = {
+  chapterNumber?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+export type QueryVersesArgs = {
+  verseNumber?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
 };
