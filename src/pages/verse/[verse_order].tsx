@@ -5,14 +5,14 @@ import { VerseById } from '@/features/verses/VerseById';
 import { graphql, useFragment, usePreloadedQuery } from 'react-relay/hooks';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import { RelayProps, withRelay } from 'relay-nextjs';
-import { Verse_Order_GitaVerseQuery } from '@/__generated__/Verse_Order_GitaVerseQuery.graphql';
+import { VerseOrder_GitaVerseQuery } from '@/__generated__/VerseOrder_GitaVerseQuery.graphql';
 import { Layout } from '@/components/Layout';
 
 export interface IChapterPageProps {}
 
 const VerseQuery = graphql`
-  query Verse_Order_GitaVerseQuery($id: ID!) {
-    GitaVerse(id: $id) {
+  query VerseOrder_GitaVerseQuery($verse_order: Float!) {
+    allGitaVerse(where: { chapter_number: { eq: $verse_order } }) {
       _id
       ...VerseById_VerseDataFragment
     }
@@ -21,8 +21,8 @@ const VerseQuery = graphql`
 
 function HandleData({
   preloadedQuery,
-}: RelayProps<{}, Verse_Order_GitaVerseQuery>) {
-  const query = usePreloadedQuery<Verse_Order_GitaVerseQuery>(
+}: RelayProps<{}, VerseOrder_GitaVerseQuery>) {
+  const query = usePreloadedQuery<VerseOrder_GitaVerseQuery>(
     VerseQuery,
     preloadedQuery
   );
@@ -35,7 +35,7 @@ function HandleData({
   return null;
 }
 
-function VersePage(props: RelayProps<{}, Verse_Order_GitaVerseQuery>) {
+function VersePage(props: RelayProps<{}, VerseOrder_GitaVerseQuery>) {
   return (
     <Layout>
       <Suspenseful>

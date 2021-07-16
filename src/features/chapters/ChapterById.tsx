@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { graphql, useFragment } from 'react-relay/hooks';
 import Link from 'next/link';
-import { Slug_GitaChapterQueryResponse } from '@/__generated__/Slug_GitaChapterQuery.graphql';
 import {
   ChapterById_ChapterDataFragment,
   ChapterById_ChapterDataFragment$key,
 } from '@/__generated__/ChapterById_ChapterDataFragment.graphql';
-import { GitaChapter } from '@/types/api';
 
 type ChapterByIdProps = {
-  query: Slug_GitaChapterQueryResponse;
+  chapterById: ChapterById_ChapterDataFragment$key;
 };
 
-export function ChapterById({ query }: ChapterByIdProps) {
-  const data = useFragment<ChapterById_ChapterDataFragment$key>(
+export function ChapterById({ chapterById }: ChapterByIdProps) {
+  const data = useFragment(
     graphql`
       fragment ChapterById_ChapterDataFragment on GitaChapter {
         name
@@ -38,8 +36,9 @@ export function ChapterById({ query }: ChapterByIdProps) {
         }
       }
     `,
-    query.GitaChapter
+    chapterById
   );
+  console.log(data);
   if (!data || !data.verses) {
     return null;
   }
@@ -77,7 +76,7 @@ export function ChapterById({ query }: ChapterByIdProps) {
                   </h2>
                   <p className="text-gray-500">{verse.text}</p>
                   <p>
-                    <Link href={`/verse/${verse._id}/fakeslug`}>
+                    <Link href={`/verse/${verse.verse_order}`}>
                       <a className="text-indigo-500 inline-flex items-center mt-4">
                         View Verse
                       </a>

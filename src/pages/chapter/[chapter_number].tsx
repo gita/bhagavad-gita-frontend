@@ -5,13 +5,13 @@ import { ChapterById } from '@/features/chapters/ChapterById';
 import { graphql, useFragment, usePreloadedQuery } from 'react-relay/hooks';
 import { getRelayClientEnvironment } from '@/config/relay/getRelayClientEnvironment';
 import { RelayProps, withRelay } from 'relay-nextjs';
-import { Chapter_Number_GitaChapterQuery } from '@/__generated__/Chapter_Number_GitaChapterQuery.graphql';
+import { ChapterNumber_GitaChapterQuery } from '@/__generated__/ChapterNumber_GitaChapterQuery.graphql';
 import { Layout } from '@/components/Layout';
 
 export interface IChapterPageProps {}
 
 const ChapterQuery = graphql`
-  query Chapter_Number_GitaChapterQuery($chapter_number: ID!) {
+  query ChapterNumber_GitaChapterQuery($chapter_number: Float!) {
     allGitaChapter(where: { chapter_number: { eq: $chapter_number } }) {
       _id
       ...ChapterById_ChapterDataFragment
@@ -21,21 +21,15 @@ const ChapterQuery = graphql`
 
 function HandleData({
   preloadedQuery,
-}: RelayProps<{}, Chapter_Number_GitaChapterQuery>) {
-  const query = usePreloadedQuery<Chapter_Number_GitaChapterQuery>(
-    ChapterQuery,
-    preloadedQuery
-  );
-  const router = useRouter();
-  const { id, slug } = router.query;
-  const stringId = Array.isArray(id) ? id[0] : id;
-  if (stringId) {
-    return <ChapterById query={query} />;
+}: RelayProps<{}, ChapterNumber_GitaChapterQuery>) {
+  const { allGitaChapter } = usePreloadedQuery(ChapterQuery, preloadedQuery);
+  if (allGitaChapter && allGitaChapter[0]) {
+    return <ChapterById chapterById={allGitaChapter[0]} />;
   }
   return null;
 }
 
-function ChapterPage(props: RelayProps<{}, Chapter_Number_GitaChapterQuery>) {
+function ChapterPage(props: RelayProps<{}, ChapterNumber_GitaChapterQuery>) {
   return (
     <Layout>
       <Suspenseful>
@@ -53,5 +47,12 @@ export default withRelay(ChapterPage, ChapterQuery, {
     );
 
     return getRelayServerEnvironment();
+  },
+  variablesFromContext: (context) => {
+    const { chapter_number } = context.query;
+
+    return {
+      chapter_number: typeof chapter_number === 'string' ? parseFloat(5) : 1,
+    };
   },
 });

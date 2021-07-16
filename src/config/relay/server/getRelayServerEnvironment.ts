@@ -31,6 +31,11 @@ export const fetchQuery = async (
         return fromCache;
     }
 
+    console.log(JSON.stringify({
+        query: operation.text,
+        variables,
+    }))
+
     const response = await fetch(APP_CONFIG.API_URL, {
         body: JSON.stringify({
             query: operation.text,

@@ -43,9 +43,7 @@ export function ChaptersList({
                 </h2>
                 <p className="leading-relaxed text-base">{chapter.name} </p>
                 <p>
-                  <Link
-                    href={`/chapter/${chapter._id}/${chapter.slug?.current}`}
-                  >
+                  <Link href={`/chapter/${chapter.chapter_number}`}>
                     <a className="text-indigo-500 inline-flex items-center mt-4">
                       View Chapter
                     </a>

@@ -4,27 +4,27 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type Slug_GitaChapterQueryVariables = {
-    id: string;
+export type ChapterNumber_GitaChapterQueryVariables = {
+    chapter_number: number;
 };
-export type Slug_GitaChapterQueryResponse = {
-    readonly GitaChapter: {
+export type ChapterNumber_GitaChapterQueryResponse = {
+    readonly allGitaChapter: ReadonlyArray<{
         readonly _id: string | null;
         readonly " $fragmentRefs": FragmentRefs<"ChapterById_ChapterDataFragment">;
-    } | null;
+    }>;
 };
-export type Slug_GitaChapterQuery = {
-    readonly response: Slug_GitaChapterQueryResponse;
-    readonly variables: Slug_GitaChapterQueryVariables;
+export type ChapterNumber_GitaChapterQuery = {
+    readonly response: ChapterNumber_GitaChapterQueryResponse;
+    readonly variables: ChapterNumber_GitaChapterQueryVariables;
 };
 
 
 
 /*
-query Slug_GitaChapterQuery(
-  $id: ID!
+query ChapterNumber_GitaChapterQuery(
+  $chapter_number: Float!
 ) {
-  GitaChapter(id: $id) {
+  allGitaChapter(where: {chapter_number: {eq: $chapter_number}}) {
     _id
     ...ChapterById_ChapterDataFragment
   }
@@ -59,14 +59,26 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "id"
+    "name": "chapter_number"
   }
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "id"
+    "fields": [
+      {
+        "fields": [
+          {
+            "kind": "Variable",
+            "name": "eq",
+            "variableName": "chapter_number"
+          }
+        ],
+        "kind": "ObjectValue",
+        "name": "chapter_number"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "where"
   }
 ],
 v2 = {
@@ -88,15 +100,15 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "Slug_GitaChapterQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "GitaChapter",
         "kind": "LinkedField",
-        "name": "GitaChapter",
-        "plural": false,
+        "name": "allGitaChapter",
+        "plural": true,
         "selections": [
           (v2/*: any*/),
           {
@@ -115,15 +127,15 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "Slug_GitaChapterQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": "GitaChapter",
         "kind": "LinkedField",
-        "name": "GitaChapter",
-        "plural": false,
+        "name": "allGitaChapter",
+        "plural": true,
         "selections": [
           (v2/*: any*/),
           {
@@ -248,14 +260,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2672b822b6f14851c50b8aa5fcc34337",
+    "cacheID": "93f8ad2391049f7a441efbbfc137ce09",
     "id": null,
     "metadata": {},
-    "name": "Slug_GitaChapterQuery",
+    "name": "ChapterNumber_GitaChapterQuery",
     "operationKind": "query",
-    "text": "query Slug_GitaChapterQuery(\n  $id: ID!\n) {\n  GitaChapter(id: $id) {\n    _id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapter {\n  name\n  title\n  chapter_number\n  chapter_summary\n  name_meaning\n  name_translation\n  name_transliterated\n  verses {\n    _id\n    title\n    text\n    slug {\n      current\n    }\n    transliteration\n    verse_number\n    verse_order\n    meaning\n    word_meanings\n  }\n}\n"
+    "text": "query ChapterNumber_GitaChapterQuery(\n  $chapter_number: Float!\n) {\n  allGitaChapter(where: {chapter_number: {eq: $chapter_number}}) {\n    _id\n    ...ChapterById_ChapterDataFragment\n  }\n}\n\nfragment ChapterById_ChapterDataFragment on GitaChapter {\n  name\n  title\n  chapter_number\n  chapter_summary\n  name_meaning\n  name_translation\n  name_transliterated\n  verses {\n    _id\n    title\n    text\n    slug {\n      current\n    }\n    transliteration\n    verse_number\n    verse_order\n    meaning\n    word_meanings\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'f713dde84b6296c7c0386d482cd44a4c';
+(node as any).hash = '065121eb8a67148f6db3038045b31667';
 export default node;
