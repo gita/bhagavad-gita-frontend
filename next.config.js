@@ -11,10 +11,7 @@ const nextConfig = {
     }
 
     return config;
-  },
-  experimental: {
-    reactMode: 'concurrent',
-  },
+  }  
 };
 
 module.exports = withPlugins([withTM], nextConfig);
