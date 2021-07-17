@@ -4,6 +4,7 @@ schema {
 type GitaChapterModel {
   id: ID!
   name: String
+  slug: String
   nameTransliterated: String
   nameTranslated: String
   versesCount: Int
@@ -34,6 +35,7 @@ type GitaTranslationModel {
 }
 type GitaVerseModel {
   id: ID!
+  slug: String
   verseNumber: Int
   chapterNumber: Int
   text: String
@@ -61,7 +63,13 @@ type Query {
     first: Int
     skip: Int
   ): [GitaChapterModel]
-  verses(verseNumber: Int, limit: Int, first: Int, skip: Int): [GitaVerseModel]
+  verses(
+    verseNumber: Int
+    verseOrder: Int
+    limit: Int
+    first: Int
+    skip: Int
+  ): [GitaVerseModel]
 }
 directive @cacheControl(
   maxAge: Int

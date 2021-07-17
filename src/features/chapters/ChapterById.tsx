@@ -15,17 +15,17 @@ export function ChapterById({ chapterById }: ChapterByIdProps) {
     graphql`
       fragment ChapterById_ChapterDataFragment on GitaChapterModel {
         name
-        chapterSummary      
-        chapterNumber      
+        chapterSummary
+        chapterNumber
         nameTransliterated
         nameTranslated
         versesCount
         nameMeaning
-       verses {
-        id
-        text
-        verseNumber
-       }
+        verses {
+          id
+          text
+          verseNumber
+        }
       }
     `,
     chapterById
@@ -39,7 +39,7 @@ export function ChapterById({ chapterById }: ChapterByIdProps) {
     chapterNumber,
     chapterSummary,
     nameMeaning,
-    nameTranslation,
+    nameTranslated,
     nameTransliterated,
     verses,
   } = data;
@@ -50,7 +50,7 @@ export function ChapterById({ chapterById }: ChapterByIdProps) {
       </h1>
       <p>{chapterSummary}</p>
       <p>{nameMeaning}</p>
-      <p>{nameTranslation}</p>
+      <p>{nameTranslated}</p>
       <p>{nameTransliterated}</p>
       <div className="flex flex-wrap -m-2">
         {verses.map((verse) => {

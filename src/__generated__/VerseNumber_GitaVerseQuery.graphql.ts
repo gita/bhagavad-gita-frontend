@@ -4,24 +4,24 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type VerseOrder_GitaVerseQueryVariables = {
+export type VerseNumber_GitaVerseQueryVariables = {
     verseNumber?: number | null;
 };
-export type VerseOrder_GitaVerseQueryResponse = {
+export type VerseNumber_GitaVerseQueryResponse = {
     readonly verses: ReadonlyArray<{
         readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"VerseById_VerseDataFragment">;
     } | null> | null;
 };
-export type VerseOrder_GitaVerseQuery = {
-    readonly response: VerseOrder_GitaVerseQueryResponse;
-    readonly variables: VerseOrder_GitaVerseQueryVariables;
+export type VerseNumber_GitaVerseQuery = {
+    readonly response: VerseNumber_GitaVerseQueryResponse;
+    readonly variables: VerseNumber_GitaVerseQueryVariables;
 };
 
 
 
 /*
-query VerseOrder_GitaVerseQuery(
+query VerseNumber_GitaVerseQuery(
   $verseNumber: Int
 ) {
   verses(verseNumber: $verseNumber) {
@@ -65,7 +65,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "VerseOrder_GitaVerseQuery",
+    "name": "VerseNumber_GitaVerseQuery",
     "selections": [
       {
         "alias": null,
@@ -92,7 +92,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "VerseOrder_GitaVerseQuery",
+    "name": "VerseNumber_GitaVerseQuery",
     "selections": [
       {
         "alias": null,
@@ -130,14 +130,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b1359f3e3288cbddb5133233eaeb64ff",
+    "cacheID": "593fb9959c2e1a9a5562e9e4ce46bae8",
     "id": null,
     "metadata": {},
-    "name": "VerseOrder_GitaVerseQuery",
+    "name": "VerseNumber_GitaVerseQuery",
     "operationKind": "query",
-    "text": "query VerseOrder_GitaVerseQuery(\n  $verseNumber: Int\n) {\n  verses(verseNumber: $verseNumber) {\n    id\n    ...VerseById_VerseDataFragment\n  }\n}\n\nfragment VerseById_VerseDataFragment on GitaVerseModel {\n  id\n  text\n  verseNumber\n  chapterNumber\n}\n"
+    "text": "query VerseNumber_GitaVerseQuery(\n  $verseNumber: Int\n) {\n  verses(verseNumber: $verseNumber) {\n    id\n    ...VerseById_VerseDataFragment\n  }\n}\n\nfragment VerseById_VerseDataFragment on GitaVerseModel {\n  id\n  text\n  verseNumber\n  chapterNumber\n}\n"
   }
 };
 })();
-(node as any).hash = 'e06c5eac46dc8010c188dc88d7626fa0';
+(node as any).hash = 'c301f14aa4f68047c76d0c2bc2df5d6c';
 export default node;

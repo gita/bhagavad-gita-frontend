@@ -21,6 +21,7 @@ export type GitaChapterModel = {
   readonly __typename?: 'GitaChapterModel';
   readonly id: Scalars['ID'];
   readonly name?: Maybe<Scalars['String']>;
+  readonly slug?: Maybe<Scalars['String']>;
   readonly nameTransliterated?: Maybe<Scalars['String']>;
   readonly nameTranslated?: Maybe<Scalars['String']>;
   readonly versesCount?: Maybe<Scalars['Int']>;
@@ -64,6 +65,7 @@ export type GitaTranslationModel = {
 export type GitaVerseModel = {
   readonly __typename?: 'GitaVerseModel';
   readonly id: Scalars['ID'];
+  readonly slug?: Maybe<Scalars['String']>;
   readonly verseNumber?: Maybe<Scalars['Int']>;
   readonly chapterNumber?: Maybe<Scalars['Int']>;
   readonly text?: Maybe<Scalars['String']>;
@@ -104,6 +106,7 @@ export type QueryChaptersArgs = {
 
 export type QueryVersesArgs = {
   verseNumber?: Maybe<Scalars['Int']>;
+  verseOrder?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
