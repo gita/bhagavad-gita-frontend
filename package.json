@@ -8,7 +8,7 @@
   "dependencies": {
     "@graphql-codegen/schema-ast": "^1.18.1",
     "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
+    "@types/react-dom": "^17.0.8",
     "@types/react-relay": "^11.0.1",
     "@types/relay-runtime": "^11.0.0",
     "autoprefixer": "^10.2.5",
